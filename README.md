@@ -2,6 +2,7 @@
 Decode Morse code using physical buttons and visualize the result live on a local web interface hosted by the ESP32.
 
 📝 Description
+
 This project turns an ESP32 into a Morse code decoder using three physical buttons:
 
 Dot/Space
@@ -14,6 +15,7 @@ Decoded text is displayed in real-time through a local Wi-Fi access point. The w
 
 
 ✨ Features
+
 🧠 Morse code decoding with physical input (dots, dashes, space, newline, backspace).
 
 🌐 ESP32 creates its own Wi-Fi Access Point (AP) — no internet needed.
