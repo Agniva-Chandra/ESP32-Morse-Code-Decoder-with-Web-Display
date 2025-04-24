@@ -27,12 +27,14 @@ Decoded text is displayed in real-time through a local Wi-Fi access point. The w
 💡 Onboard LED feedback for button press events.
 
 
-Component | Quantity | Notes
-ESP32 Dev Board | 1 | Main microcontroller
-Push Buttons | 3 | For Dot, Dash, and Backspace
-10kΩ Resistor | 2 | Pull-down for Dot and Backspace
-6.8kΩ Resistor | 1 | Pull-down for Dash button (D5/GPIO5)
-Breadboard & Jumper Wires | As needed | For prototyping
+🔧 Components Required
+
+Component	Quantity	Details
+ESP32 Dev Board	1	Main microcontroller
+Push Buttons	3	For Dot, Dash, and Backspace
+10kΩ Resistor	2	Pull-down for Dot and Backspace buttons
+6.8kΩ Resistor	1	Pull-down for Dash button (D5/GPIO5)
+Breadboard + Wires	As needed	For prototyping
 
 
 ESP32 Pin | Button Function | Resistor | Connected To
