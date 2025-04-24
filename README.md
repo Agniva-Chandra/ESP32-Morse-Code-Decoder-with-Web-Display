@@ -1,77 +1,115 @@
-# ESP32-Morse-Code-Decoder-with-Web-Display
+# 📡 ESP32 Morse Code Decoder with Web Display
+
 Decode Morse code using physical buttons and visualize the result live on a local web interface hosted by the ESP32.
 
-📝 Description
+---
+
+## 📝 Description
 
 This project turns an ESP32 into a Morse code decoder using three physical buttons:
 
-Dot/Space
+- **DOT / Space**
+- **DASH / Newline**
+- **Backspace**
 
-Dash/Newline
+The decoded message is displayed in real-time through a local Wi-Fi Access Point.  
+The web interface updates automatically using JavaScript polling — no internet needed.
 
-Backspace
+---
 
-Decoded text is displayed in real-time through a local Wi-Fi access point. The web interface updates automatically using JavaScript fetch polling.
+## ✨ Features
 
+- 🧠 Physical button-controlled Morse code input.
+- 📶 ESP32 creates its own Wi-Fi AP — no internet required.
+- 🌐 Real-time decoded output visible on a web page.
+- 🔙 Backspace support to delete the last character.
+- 💡 Built-in LED feedback for button presses.
 
-✨ Features
+---
 
-🧠 Morse code decoding with physical input (dots, dashes, space, newline, backspace).
+## real photo of device
 
-🌐 ESP32 creates its own Wi-Fi Access Point (AP) — no internet needed.
-
-🖥️ Clean real-time web interface to view the decoded output.
-
-🔙 Backspace support to delete the last decoded character.
-
-💡 Onboard LED feedback for button press events.
-
-
-🔧 Components Required
-
-Component	Quantity	Details
-ESP32 Dev Board	1	Main microcontroller
-Push Buttons	3	For Dot, Dash, and Backspace
-10kΩ Resistor	2	Pull-down for Dot and Backspace buttons
-6.8kΩ Resistor	1	Pull-down for Dash button (D5/GPIO5)
-Breadboard + Wires	As needed	For prototyping
+![image](https://github.com/user-attachments/assets/c525235b-b4a4-47cf-af96-72b5ac56b232)
 
 
-ESP32 Pin | Button Function | Resistor | Connected To
-GPIO4 | Dot / Space | 10kΩ | Button → GND
-GPIO5 | Dash / Newline | 6.8kΩ | Button → GND
-GPIO23 | Backspace | 10kΩ | Button → GND
-GPIO2 | LED Indicator | - | Built-in on ESP32
+## 🔧 Components Required
 
-Note: Use INPUT_PULLUP in the code. This means buttons should connect one leg to GPIO and the other to GND. Resistors are used for clean signals.
+| Component           | Quantity   | Details                                      |
+|---------------------|------------|----------------------------------------------|
+| ESP32 Dev Board      | 1          | Main microcontroller                         |
+| Push Buttons         | 3          | For Dot, Dash, and Backspace                 |
+| 10kΩ Resistor        | 2          | Pull-down for Dot and Backspace buttons      |
+| 6.8kΩ Resistor       | 1          | Pull-down for Dash button (D5/GPIO5)         |
+| Breadboard + Wires   | As needed  | For prototyping                              |
+
+---
+
+## circuit diagram 
+
+![image](https://github.com/user-attachments/assets/1c85d204-0d5a-40b1-9afc-1afa8fc3bf83)
 
 
+## 🧩 Circuit Connections
 
-⚙️ How It Works
-Start-Up:
+| ESP32 Pin | Button Function | Resistor | Connection       |
+|-----------|------------------|----------|------------------|
+| GPIO4     | Dot / Space       | 10kΩ     | Button → GND      |
+| GPIO5     | Dash / Newline    | 6.8kΩ    | Button → GND      |
+| GPIO23    | Backspace         | 10kΩ     | Button → GND      |
+| GPIO2     | LED (feedback)    | *(none)* | Built-in on ESP32 |
 
-ESP32 creates a Wi-Fi AP named Morse_AP with password 12345678.
+> 🔧 **Note:** Buttons are configured using `INPUT_PULLUP`. That means one end of the button goes to the GPIO pin, and the other to **GND**.
 
-Access the server by connecting your mobile or laptop to this AP and navigating to 192.168.4.1.
+---
 
-Morse Input:
+## ⚙️ How It Works
 
-Short Press on DOT button: Adds a . to the current Morse character.
+## morse code chart
 
-Short Press on DASH button: Adds a -.
+![image](https://github.com/user-attachments/assets/6ebabd35-bb32-49d5-b8bf-dfb5e8f863f2)
 
-Long Press on DOT button: Adds a space ( ) between words.
 
-Long Press on DASH button: Adds a newline (\n) in the output.
+### 📶 ESP32 as Wi-Fi AP
 
-Backspace button: Removes the last decoded character.
+The ESP32 starts a local Wi-Fi network:
+- **SSID:** `Morse_AP`  
+- **Password:** `12345678`
 
-Decoding:
+Connect your device to this network and open [http://192.168.4.1](http://192.168.4.1) in a browser.
 
-After a short inactivity (1s), current Morse code is decoded into a letter or number and added to the displayed message.
+---
 
-Web Interface:
+### 🔘 Button Functions
 
-Simple UI updates every 500ms with the latest message.
+- **DOT Button (short press):** Adds `.`
+- **DASH Button (short press):** Adds `-`
+- **DOT Button (long press):** Adds space (` `)
+- **DASH Button (long press):** Adds newline (`\n`)
+- **Backspace Button:** Deletes the last decoded character
 
-Shows live typing with a blinking cursor effect.
+---
+
+## result serial monitor
+
+![image](https://github.com/user-attachments/assets/5a9e9247-dab8-412d-99f4-38bf280d5705)
+
+
+### 🔡 Morse Decoding
+
+If no button is pressed for **1 second**, the current Morse sequence is decoded into a letter or digit using internal lookup tables.
+
+---
+
+### 🌐 Live Web Output
+
+- The webpage auto-refreshes every **500ms** using JavaScript.
+- Shows the full decoded message live.
+- Includes a **blinking cursor** animation for a terminal-style display.
+
+---
+
+
+## result in Access Point (AP) 
+
+![image](https://github.com/user-attachments/assets/5a63a407-4de5-4f35-b498-8bc08742ff43)
+
